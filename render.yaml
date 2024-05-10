@@ -6,10 +6,10 @@ services:
       url: ghcr.io/toeverything/affine-graphql:stable
     region: ohio
     plan: free
-    disk:
-      name: custom_configurations
-      mountPath: /root/.affine/
-      sizeGB: 10
+    # disk:
+    #   name: custom_configurations
+    #   mountPath: /root/.affine/
+    #   sizeGB: 10
     envVars:
       - key: NODE_OPTIONS
         value: "--import=./scripts/register.js"
