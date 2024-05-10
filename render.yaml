@@ -34,8 +34,10 @@ services:
       #   value: selfhosted
       - key: NODE_ENV
         value: production
+      - key: NEXTAUTH_URL
+        sync: false
       - key: AFFINE_SERVER_HOST
-        value: localhost
+        sync: false
       - key: AFFINE_SERVER_PORT
         value: 3010
       - key: PORT
