@@ -14,8 +14,8 @@ services:
     envVars:
       - key: NODE_OPTIONS
         value: "--import=./scripts/register.js"
-      - key: AFFINE_CONFIG_PATH
-        value: /etc/secrets/
+      # - key: AFFINE_CONFIG_PATH
+      #   value: /etc/secrets/
       - key: REDIS_SERVER_HOST
         fromService:
           type: redis
