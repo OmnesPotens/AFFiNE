@@ -6,6 +6,7 @@ services:
       url: ghcr.io/toeverything/affine-graphql:stable
     region: ohio
     plan: free
+    preDeployCommand: cat /etc/secrets/affine_config.env
     # disk:
     #   name: custom_configurations
     #   mountPath: /root/.affine/
