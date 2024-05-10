@@ -16,11 +16,32 @@ services:
       - key: AFFINE_CONFIG_PATH
         value: /root/.affine/config
       - key: REDIS_SERVER_HOST
-        value: redis
+        fromService:
+          type: redis
+          name: affine_redis
+          property: host
+      - key: REDIS_SERVER_PORT
+        fromService:
+          type: redis
+          name: affine_redis
+          property: port
       - key: DATABASE_URL
-        value: postgres://affine:affine@postgres:5432/affine
+        # value: postgres://affine:affine@postgres:5432/affine
+        fromDatabase:
+          name: affine_postgres
+          property: connectionString
       - key: NODE_ENV
         value: production
+      - key: AFFINE_SERVER_HOST
+        value: localhost
+      - key: AFFINE_SERVER_PORT
+        value: 3010
+      - key: PORT
+        # value: 3010
+        fromService:
+          name: affine_selfhosted
+          type: web
+          envVarKey: AFFINE_SERVER_PORT
       - key: AFFINE_ADMIN_EMAIL
         sync: false
       - key: AFFINE_ADMIN_PASSWORD
@@ -31,6 +52,9 @@ services:
         value: "false"
   - type: redis
     name: affine_redis
+    # runtime: image
+    # image:
+    #   url: docker.io/redis/redis:latest
     ipAllowList:
       - source: 0.0.0.0/0
         description: everywhere
@@ -44,4 +68,3 @@ databases:
     plan: free
     databaseName: affine
     user: affine
-    
