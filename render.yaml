@@ -37,6 +37,8 @@ services:
         value: production
       - key: NEXTAUTH_URL
         sync: false
+      - key: AFFINE_SERVER_HTTPS
+        value: "true"
       - key: AFFINE_SERVER_HOST
         sync: false
       - key: AFFINE_SERVER_PORT
