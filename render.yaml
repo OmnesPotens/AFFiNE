@@ -51,6 +51,14 @@ services:
       # Uncomment next line if you wish to quit telemetry.
       - key: TELEMETRY_ENABLE
         value: "false"
+      - key: MAILER_HOST
+        value: smtp.gmail.com
+      - key: MAILER_PORT
+        value: 587
+      - key: MAILER_USER
+        sync: false
+      - key: MAILER_PASSWORD
+        sync: false
   - type: redis
     name: affine_redis
     ipAllowList:
