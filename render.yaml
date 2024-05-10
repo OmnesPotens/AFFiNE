@@ -16,6 +16,7 @@ services:
         value: "--import=./scripts/register.js"
       # - key: AFFINE_CONFIG_PATH
       #   value: /etc/secrets/
+      #
       - key: REDIS_SERVER_HOST
         fromService:
           type: redis
