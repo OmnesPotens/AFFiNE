@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: affine_selfhosted
+    runtime: image
+    image:
+      url: ghcr.io/toeverything/affine-graphql:stable
+    region: ohio
+    plan: free
+    disk:
+      name: custom_configurations
+      mountPath: /root/.affine/
+      sizeGB: 10
+    envVars:
+      - key: NODE_OPTIONS
+        value: "--import=./scripts/register.js"
+      - key: AFFINE_CONFIG_PATH
+        value: /root/.affine/config
+      - key: REDIS_SERVER_HOST
+        value: redis
+      - key: DATABASE_URL
+        value: postgres://affine:affine@postgres:5432/affine
+      - key: NODE_ENV
+        value: production
+      - key: AFFINE_ADMIN_EMAIL
+        sync: false
+      - key: AFFINE_ADMIN_PASSWORD
+        sync: false
+      # Telemetry allows us to collect data on how you use the affine. This data will helps us improve the app and provide better features.
+      # Uncomment next line if you wish to quit telemetry.
+      - key: TELEMETRY_ENABLE
+        value: "false"
+  - type: redis
+    name: affine_redis
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    region: ohio
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+databases:
+  - name: affine_postgres
+    # postgresMajorVersion:
+    region: ohio
+    plan: free
+    databaseName: affine
+    user: affine
+    
