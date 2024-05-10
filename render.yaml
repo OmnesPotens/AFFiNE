@@ -6,7 +6,7 @@ services:
       url: ghcr.io/toeverything/affine-graphql:stable
     region: ohio
     plan: free
-    preDeployCommand: cat /etc/secrets/affine_config.env
+    # preDeployCommand: cat /etc/secrets/affine.env.js
     # disk:
     #   name: custom_configurations
     #   mountPath: /root/.affine/
@@ -15,7 +15,7 @@ services:
       - key: NODE_OPTIONS
         value: "--import=./scripts/register.js"
       - key: AFFINE_CONFIG_PATH
-        value: /etc/secrets/affine_config.env
+        value: /etc/secrets/
       - key: REDIS_SERVER_HOST
         fromService:
           type: redis
